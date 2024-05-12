@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- header -->
+    <header class="main">
+        <div class="container">
+            <div class="header-top">
+                <div class="header-left">
+                    <div class="logo-wrapper">
+                        <div class="logo">
+                            <a href="#">
+                                <img src="./images/pngwing.com.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-middle">
+                    <div class="nav-container">
+                        <div class="nav-links">
+                            <ul class="menu-container">
+                                <a href="#">
+                                    <li class="menu-item">Home</li>
+                                </a>
+                                <a href="#">
+                                    <li class="menu-item">Shop</li>
+                                </a>
+                                <a href="#">
+                                    <li class="menu-item">On Sale</li>
+                                </a>
+                                <a href="#">
+                                    <li class="menu-item">Brands</li>
+                                </a>
+                                <a href="#">
+                                    <li class="menu-item">Contact</li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="search-by-catagory">
+                        <form class="search-bar">
+                            <select class="select-catagory">
+                            </select>
+                            <div class="search-table">
+                                <input type="text" placeholder="Search for products" class="search-input">
+                                <button class="form-btn" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <button class="search-btn" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="icon-wrapper">
+                        <div class="profile-wrapper">
+                            <a href="#">
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                        </div>
+                        <div class="cart-wrapper">
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+            </div>
+        </div>
+    </header>
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item ">
+                <h1>Get Best Deal</h1>
+            </div>
+            <div class="carousel-item ">
+                <h1>100% Off</h1>
+            </div>
+            <div class="carousel-item ">
+                <h1>Get Best Deal</h1>
+            </div>
+            <div class="carousel-item ">
+                <h1>100% Off</h1>
+            </div>
+        </div>
+        <a class="carousel-control prev" href="#">&lt;</a>
+        <a class="carousel-control next" href="#">&gt;</a>
+    </div>
+
+    <!-- content-area -->
+    <div class="content-area">
+        <!-- sidebar -->
+        <div class="left-nav">
+            <div class="nav">
+                <ul class="categories" >
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- product container -->
+        <div class="cards">
+        </div>
+    </div>
+    <div class="cart">
+        <div class="cart-title">
+            <h2>My Cart</h2>
+        </div>
+        <!-- <div class="cart-items">
+            <div class="img">
+                <img class="cart-img" src="./images/5df10d81fd9db229ba736a77.webp" alt="">
+            </div>
+            <div class="card-desc">
+                <div class="info">
+                    <h4> prod name</h4>
+                    <p> prod description</p>
+                </div>
+                <div class="amt">
+                    <div class="amt-count">
+                        <h4>
+                            5
+                        </h4>
+                    </div>
+                    <button class="inc-btn">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button class="inc-btn">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                </div> 
+            </div>          
+        </div> -->
+        <div class="total-cost">
+            <h4>total</h4>
+            <h4>$ 300</h4>
+        </div>
+    </div>
+    <span id="overlay"></span>
+</body>
+<script src="./app.js"></script>
+</html>

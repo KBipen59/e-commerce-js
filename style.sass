@@ -1,0 +1,359 @@
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+    font-family: "Poppins" , sans-serif
+    scroll-behavior: smooth
+    text-decoration: none
+    list-style-type: none
+    text-transform: capitalize
+
+:root
+    --bg-color: #ccc
+    --text-color: #000
+    --main-color: #f0f0f0
+    --other-color: #ffc633
+    --second-color: #c8c6c6
+
+    --h1-font: 5.5rem
+    --h2-font: 3.5rem
+    --p-font: 1rem
+
+.main
+    .container
+        background-color: #ffc600
+        padding: 0 100px
+        .header-top
+            display: flex
+            margin: auto
+            align-items: center
+            justify-content: space-between
+            .header-left
+                .logo
+                    width: 100px
+                    a
+                        img
+                            width: 100px
+            .header-middle
+                .nav-container
+                    .nav-links
+                        .menu-container
+                            display: flex
+                            gap: 10px
+                            a
+                                color: white
+                                font-weight: 500
+                                padding: 5px
+                                min-width: 100px
+                                &::after
+                                    content: ''
+                                    width: 0
+                                    background-color: #0039FF
+                                    height: 2px
+                                    display: inline-block
+                                    transition: all ease 0.35s
+                                    position: absolute
+                                &:hover
+                                    &::after
+                                        width: 65px
+                                    
+            .header-right
+                display: flex
+                gap: 50px
+                padding: 0 10px
+                .search-by-catagory
+                    position: relative
+
+                    .search-bar
+                        overflow: hidden
+                        display: flex
+                        align-items: center
+                        padding: 10px
+                        // background-color: #fff
+                        border-radius: 8px
+                        transition: all ease 0.35s
+                        .select-catagory , .search-table>input , .search-table>button
+                            height: 30px
+                        .select-catagory
+                            outline: none
+                            border: none
+                            padding: 0 30px
+                            border-right: 1px solid #0039FF
+                        .search-table>button
+                            margin-left: -5px
+                            width: 20px
+                            border: none
+                            background-color: transparent
+                        .search-table>input
+                            border: none
+                            outline: none
+                            padding: 10px
+                            display: inline-block
+                        .select-catagory , .search-table>input
+                            opacity: 0
+                            visibility: hidden
+                            transition: all ease 0.35s
+                            transform: translateX(300px)
+                .search-btn
+                    position: absolute
+                    right: 12px
+                    top: 50%
+                    transform: translateY(-50%)
+                .search-btn.hide
+                    display: none
+                        
+                .icon-wrapper
+                    display: flex
+                    gap: 30px
+                    align-items: center
+                    a 
+                        i
+                            font-size: 20px
+        
+.content-area
+    display: flex
+    padding: 10px 0
+    .left-nav
+        width: 20%
+        // box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+        .nav
+            padding: 10px 50px
+            .categories
+                .menu-item
+    .cards
+        background-color: var(--second-color)
+        flex: 1
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        padding: 50px
+        
+        .card
+            background-color: #fff
+            width: 250px
+            border: 1px solid #ccc
+            border-radius: 5px
+            overflow: hidden
+            margin-bottom: 20px
+            img
+                width: 100%
+                height: 150px
+                object-fit: cover
+            .info
+                padding: 8px
+                .prod
+                .prod-desc
+                    font-size: 12px
+                    margin-bottom: 5px
+                .price
+                    color: red
+                    .market-price
+                        text-decoration: line-through
+                    .selling-price
+            &:hover
+
+            .rating-div
+                padding: 8px
+
+.carousel 
+  position: relative
+  overflow: hidden
+//   width: 100%
+//   display: flex
+//   justify-content: center
+//   padding: 0 10%
+
+.carousel-inner 
+    display: flex
+    transition: transform 0.5s ease
+    // justify-content: center
+    // align-items: center
+
+
+.carousel-item
+    padding: 10px
+    text-align: center
+    flex: 0 0 100%
+
+
+.carousel h1
+    height: auto
+
+
+.carousel-control 
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    color: white
+    text-decoration: none
+    font-size: 3em
+    color: black
+
+.carousel-control.prev 
+    left: 200px
+
+
+.carousel-control.next 
+    right: 200px
+    
+.star
+    display: flex
+    gap: 10px
+    .bi-star-fill
+        fill: transparent
+        stroke: gold
+    .bi-star-fill.active
+        fill: gold 
+        stroke: gold
+
+
+// cart css
+.cart
+    position: absolute
+    top: 83px
+    right: 0
+    width: 28%  
+    padding: 12px
+    background-color: #dadada
+    transform: translateX(100%)
+    visibility: hidden
+    opacity: 0
+    transition: all ease 0.35s
+    overflow-x: hidden
+    .cart-title
+        padding: 4px 12px 
+        background-color:#ffc600
+        color: white
+    .cart-items
+        padding: 12px
+        border-bottom: 2px solid black
+        display: flex
+        align-items: center
+        // justify-content: space-between
+        gap: 20px
+        .img
+            img
+                width: 100px
+                height: 80px
+                object-fit: cover
+        .card-desc
+            flex: 1
+            display: flex
+            align-items: center
+            justify-content: space-between  
+            .amt
+                background-color: #fff
+                padding: 8px
+                border: 1px solid #fff
+                border-radius: 4px
+                display: flex
+                align-items: center
+                gap: 10px
+                .amt-count
+                    // text-align: center
+                    // display: flex
+                    // justify-content: center
+                button
+                    padding: 5px 6px  
+    .total-cost
+        display: flex
+        justify-content: space-between
+.cart.clicked
+    transform: translateX(0%)
+    visibility: visible
+    opacity: 1
+    z-index: 1000
+
+#overlay
+    background-color: #0000009f
+    position: fixed
+    inset: 0
+    z-index: 999
+    opacity: 0
+    visibility: hidden
+    transition: all ease 0.5s
+    
+
+
+.prod-container
+    padding: 20px 100px 
+    .prod
+        display: flex
+        flex-direction: row-reverse
+        gap: 60px
+        .prod-desc
+            flex: 1
+            .star
+                margin: 10px 0
+
+            .prod-stocks
+                margin: 10px 0
+                .stocks-count
+                    font-size: 20px
+                    font-weight: 500
+            .select-quantity
+                margin-bottom: 10px
+                font-size: 20px
+                font-weight: 500
+                display: flex
+                flex-direction: column
+                #quantity
+                    padding: 12px
+                    border-radius: 10px
+                    width: 20%
+                    margin-top: 6px
+
+            .price
+                margin-bottom: 10px
+                display: flex 
+                gap: 20px
+                align-items: center
+                h6
+                    display: inline-block
+                    color: red
+                    font-size: 15px
+                .market-price 
+                    text-decoration: line-through
+                    font-size: 20px
+            .selling-price
+                margin-bottom: 10px
+                font-size: 40px
+            .buttons
+                display: flex
+                gap: 20px
+                button
+                    padding: 10px
+                    border-radius: 10px
+                .add-to-cart
+                    background-color: black
+                    color: white
+        .img-container
+            flex: 1
+            display: flex
+            gap: 30px
+            .main-img
+                width: auto
+                height: 300px
+                img
+                    width: auto
+                    height: 350px
+                    object-fit: cover
+        .thumbnails
+            .thumbnails-imgs
+                display: grid
+                grid-template-columns: repeat(2, 1fr)
+                gap: 20px
+                font-size: 0 
+                line-height: 10px   
+                // display: flex
+                // flex-direction: column
+                // gap: 15px
+
+                img
+                    width: 100px
+                    height: 80px
+                    object-fit: contain
+
+
+
+
+
