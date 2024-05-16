@@ -51,7 +51,7 @@ function updateCarousel() {
 
 
 function getAllCategory (products) {
-        // getting only unique catagory
+    // getting only unique catagory
     //  iterate over category return select option
     const categories = products.reduce((values ,item)=>{
         if(!values.includes(item.category)){
@@ -251,7 +251,7 @@ cartItems.map((item) => {
                 <button class="inc-btn">
                     <i class="fa-solid fa-plus"></i>
                 </button>
-                <button class="inc-btn">
+                <button class="dec-btn">
                     <i class="fa-solid fa-minus"></i>
                 </button>
             </div> 
@@ -262,7 +262,9 @@ cartItems.map((item) => {
     // total += (item.price - (item.price * (item.discountPercentage/100))).toFixed(2)
 })
 
-// for calculating the total of the cart items 
+const amtBtn = document.querySelectorAll('.amt button' )
+
+console.log(amtBtn)
 
 
 
