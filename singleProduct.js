@@ -123,6 +123,7 @@ function addToCart() {
 function saveProd(clickedItem) {
      
     let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+    console.log(cartItems)
     cartItems.push(clickedItem)
     localStorage.setItem('cartItems' ,JSON.stringify(cartItems))
     uniqueCartItem()
@@ -150,21 +151,22 @@ function cartEvent () {
             cartDiv.classList.remove('clicked')
         })
     })
-    // updateCart(cart)
-    uniqueCartItem()
+    updateCart()
+    // uniqueCartItem()
 }
 cartEvent()
 
 // for the cart
 
 
-function updateCart(cartItems) {
-    // console.log(cartItems)
+function updateCart() {
+    const cart = JSON.parse(localStorage.getItem('uniqueCartItems'))
+    console.log(cart)
     // console.log("hello")
     cartDiv.innerHTML = ''
 
-    cartItems.map((item , id) => {
-        const total = cartItems.reduce((acc , item)=>{
+    cart.map((item , id) => {
+        const total = cart.reduce((acc , item)=>{
             return acc += item.count * (item.price - (item.price * (item.discountPercentage/100)))
         }, 0)
         cartDiv.innerHTML +=` 
@@ -194,7 +196,7 @@ function updateCart(cartItems) {
                     </div>
             </div>          
         </div>`
-        if(id == cartItems.length - 1){
+        if(id == cart.length - 1){
             cartDiv.innerHTML += `
             <div class="total-cost">
                 <h4>Total</h4>
@@ -203,7 +205,7 @@ function updateCart(cartItems) {
             `
         }
     })
-    itemCount(cartItems)
+    itemCount(cart)
 }
 
 
@@ -224,9 +226,9 @@ function uniqueCartItem () {
     
         return acc;
     }, []);
-    // localStorage.setItem("uniqueCartItems", JSON.stringify(uniqueItemsWithCount))
+    localStorage.setItem("uniqueCartItems", JSON.stringify(uniqueItemsWithCount))
 //    console.log(uniqueItemsWithCount);
-   updateCart(uniqueItemsWithCount)
+   updateCart()
 //    itemCount(uniqueItemsWithCount)
     // updateCart(JSON.parse(localStorage.getItem('uniqueCartItems')))
     
@@ -293,6 +295,8 @@ function productAmt (id , prodQantity , cartObj) {
             prod.count = prodQantity
         }
     })
+    localStorage.setItem("uniqueCartItems", JSON.stringify(cartObj))
+
     if(prodQantity <= 0){
         const filteredCart = cartObj.filter((prod) => {
             if(prod.count != 0){
@@ -300,11 +304,11 @@ function productAmt (id , prodQantity , cartObj) {
             }
         })
         console.log(filteredCart)
-        // localStorage.setItem("uniqueCartItems", JSON.stringify(filteredCart))
-        updateCart(filteredCart)
+        localStorage.setItem("uniqueCartItems", JSON.stringify(filteredCart))
+        updateCart()
     }
     // console.log(cartObj)
-    updateCart(cartObj)
+    updateCart()
 
 }
 
