@@ -195,7 +195,7 @@ function cardEvent(cards) {
     allCards.forEach((card)  => {
         card.addEventListener('click' , function (e) {
             const productId = e.currentTarget.dataset.id
-            window.location.href = `http://127.0.0.1:5500//single-product.html?id=${productId}`;
+            window.location.href = `https://ecommerce-bipen.netlify.app/single-product.html?id=${productId}`;
         })
     })
 
