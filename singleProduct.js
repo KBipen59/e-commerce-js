@@ -148,6 +148,7 @@ function saveProd(clickedItem) {
 // cart toogle class
 const cartBtn = document.querySelector('.cart-wrapper a')
 const cartDiv = document.querySelector('.cart')
+const cartList = document.querySelector('.cart-lists')
 const overlay = document.querySelector('#overlay')
 
 function cartEvent () {
@@ -179,13 +180,13 @@ function updateCart() {
 
     // console.log(cart)
     // console.log("hello")
-    cartDiv.innerHTML = ''
+    cartList.innerHTML = ''
 
     cart.map((item , id) => {
         const total = cart.reduce((acc , item)=>{
             return acc += item.count * (item.price - (item.price * (item.discountPercentage/100)))
         }, 0)
-        cartDiv.innerHTML +=` <div class="cart-items ">
+        cartList.innerHTML +=` <div class="cart-items ">
                                 <div class="img">
                                     <img class="cart-img" src=${item.thumbnail} alt="">
                                 </div>
@@ -207,12 +208,12 @@ function updateCart() {
                                         </button>
                                         </div> 
                                         <div class="item-total">
-                                            <h4>${item.count * (item.price - (item.price * (item.discountPercentage/100))).toFixed(2) }</h4>
+                                            <h4>${(item.count * (item.price - (item.price * (item.discountPercentage/100)))).toFixed(2) }</h4>
                                         </div>
                                 </div>          
                             </div>`
         if(id == cart.length - 1){
-            cartDiv.innerHTML += `
+            cartList.innerHTML += `
             <div class="total-cost">
                 <h4>Total</h4>
                 <h4>$${total.toFixed(2)}</h4>
