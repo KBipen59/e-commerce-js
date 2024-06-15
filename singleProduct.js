@@ -119,20 +119,41 @@ function addToCart() {
     .then(data => saveProd(data))
 }
 
+// saves the addedcartproduct in local storage
 function saveProd(clickedItem) {
-    
+    const selectedOption = document.querySelector('#quantity')
+    const selectedValue = Number(selectedOption.value)
+    // let count = 1
     let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
-    cartItems.push(clickedItem)
-    localStorage.setItem('cartItems' ,JSON.stringify(cartItems))
+    // console.log(cartItems)
+    if(cartItems.length == 0){
+        clickedItem.count = selectedValue
+        cartItems.push(clickedItem)
+        localStorage.setItem('cartItems' ,JSON.stringify(cartItems))
+    }else {
+        let existingItem = cartItems.find(item => item.id === clickedItem.id)
+        if(existingItem){
+            existingItem.count += selectedValue
+        }else{
+            clickedItem.count = selectedValue;
+            cartItems.push(clickedItem);
+        }
+        localStorage.setItem('cartItems' ,JSON.stringify(cartItems))
+        console.log(JSON.parse(localStorage.getItem('cartItems')))
+    }
     updateCart()
+
 }
 
 // cart toogle class
 const cartBtn = document.querySelector('.cart-wrapper a')
 const cartDiv = document.querySelector('.cart')
+const cartList = document.querySelector('.cart-lists')
 const overlay = document.querySelector('#overlay')
 
 function cartEvent () {
+    // const cart = JSON.parse(localStorage.getItem('cartItems'))
+
     cartBtn.addEventListener('click', function() {
         cartDiv.classList.toggle('clicked')
         if(cartDiv.classList.contains('clicked')){
@@ -151,46 +172,145 @@ function cartEvent () {
 cartEvent()
 
 // for the cart
+
+
 function updateCart() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems'))
-console.log(typeof(cartItems))
+    // const cart = JSON.parse(localStorage.getItem('uniqueCartItems'))
+    const cart = JSON.parse(localStorage.getItem('cartItems'))
 
-cartItems.map((item) => {
-    
-    const total = cartItems.reduce((acc , item)=>{
-        return acc += (item.price - (item.price * (item.discountPercentage/100)))
-    }, 0)
-    cartDiv.innerHTML += ` 
-    <div class="cart-items">
-        <div class="img">
-            <img class="cart-img" src=${item.thumbnail} alt="">
-        </div>
-        <div class="card-desc">
-            <div class="info">
-                <h4>${item.title}</h4>
-                <p> ${item.description}</p>
-                <h4>$ ${(item.price - (item.price * (item.discountPercentage/100))).toFixed(2)}</h4>
+    // console.log(cart)
+    // console.log("hello")
+    cartList.innerHTML = ''
+
+    cart.map((item , id) => {
+        const total = cart.reduce((acc , item)=>{
+            return acc += item.count * (item.price - (item.price * (item.discountPercentage/100)))
+        }, 0)
+        cartList.innerHTML +=` <div class="cart-items ">
+                                <div class="img">
+                                    <img class="cart-img" src=${item.thumbnail} alt="">
+                                </div>
+                                <div class="card-desc">
+                                    <div class="info">
+                                        <h4>${item.title}</h4>
+                                        <p> ${item.description}</p>
+                                        <h4>$ ${(item.price - (item.price * (item.discountPercentage/100))).toFixed(2)}</h4>
+                                    </div>
+                                    <div class="amt" data-id="${item.id}">
+                                        <div class="amt-count">
+                                            <h4>${item.count}</h4>
+                                        </div>
+                                        <button class="inc-btn">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                        <button class="dec-btn">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                        </div> 
+                                        <div class="item-total">
+                                            <h4>${(item.count * (item.price - (item.price * (item.discountPercentage/100)))).toFixed(2) }</h4>
+                                        </div>
+                                </div>          
+                            </div>`
+        if(id == cart.length - 1){
+            cartList.innerHTML += `
+            <div class="total-cost">
+                <h4>Total</h4>
+                <h4>$${total.toFixed(2)}</h4>
             </div>
-            <div class="amt">
-                <div class="amt-count">
-                    <h4>
-                        5
-                    </h4>
-                </div>
-                <button class="inc-btn">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <button class="inc-btn">
-                    <i class="fa-solid fa-minus"></i>
-                </button>
-            </div> 
-        </div>          
-    </div>`
-    
-})
-
+            `
+        }
+    })
+    itemCount(cart)
 }
 
+
+// function uniqueCartItem () {
+//     // console.log(cartItems)
+//     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    
+//     const uniqueItemsWithCount = cartItems.reduce((acc, item) => {
+//         const index = acc.findIndex(obj => obj.id === item.id);
+    
+//         if (index !== -1) {
+//             // If the item already exists in acc, increment its count
+//             acc[index].count++;
+//         } else {
+//             // If the item is not in acc, add it with count 1
+//             acc.push({ ...item, count: 1 });
+//         }
+    
+//         return acc;
+//     }, []);
+//     localStorage.setItem("uniqueCartItems", JSON.stringify(uniqueItemsWithCount))
+// //    console.log(uniqueItemsWithCount);
+//    updateCart()
+// //    itemCount(uniqueItemsWithCount)
+//     // updateCart(JSON.parse(localStorage.getItem('uniqueCartItems')))
+    
+// }   
+// uniqueCartItem()
+
+
+// waiting for the event 
+// count for increasing and decreasing the amount of item 
+function itemCount(items) {
+    const amtBtn = document.querySelectorAll('.amt button' )
+    // console.log(amtBtn)
+    // console.log(items)
+    
+    amtBtn.forEach((btn) => {
+        btn.addEventListener('click', function (e) {
+            // console.log(e.currentTarget)
+            const parentDiv = e.currentTarget.closest('.amt')
+            const countDiv = parentDiv.querySelector('.amt-count h4')
+            let count = Number(countDiv.innerText)
+            if(e.currentTarget.classList.contains("inc-btn")){
+                // countDiv.innerText = Number(count) + 1
+                count = count + 1
+                countDiv.innerText = count
+                const dataId = parentDiv.getAttribute('data-id')
+                console.log(items)
+                productAmt(dataId , count , items)
+            }
+            else if (e.currentTarget.classList.contains("dec-btn")){
+                count = count - 1
+                countDiv.innerText = count
+                const dataId = parentDiv.getAttribute('data-id')
+
+                productAmt(dataId , count , items)
+            }
+        })
+    })
+}
+
+
+//  update the the count of the that product and claling the updatecart
+
+function productAmt (id , prodQantity , cartObj) { 
+
+
+    cartObj.forEach((prod) => {
+        // console.log(prod.id)
+        if(prod.id == Number(id)) {
+            prod.count = prodQantity
+        }
+    })
+    localStorage.setItem("cartItems", JSON.stringify(cartObj))
+
+    if(prodQantity <= 0){
+        const filteredCart = cartObj.filter((prod) => {
+            if(prod.count != 0){
+                return prod
+            }
+        })
+        console.log(filteredCart)
+        localStorage.setItem("cartItems", JSON.stringify(filteredCart))
+        updateCart()
+    }
+    updateCart()
+
+}
 
 
 
